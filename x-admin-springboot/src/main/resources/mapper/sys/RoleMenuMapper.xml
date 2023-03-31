@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.admin.sys.mapper.RoleMenuMapper">
+    <!--    resultType返回的是集合中的元素类型，而不是集合本身.-->
+    <select id="getMenuIdListByRoleId" parameterType="Integer" resultType="Integer">
+        SELECT rm.menu_id
+        FROM x_role_menu rm
+                 LEFT JOIN x_menu m ON rm.menu_id = m.menu_id
+        WHERE rm.role_id = #{roleId}
+          AND m.is_leaf = 'Y'
+    </select>
+</mapper>
